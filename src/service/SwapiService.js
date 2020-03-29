@@ -6,7 +6,7 @@ export default class SwapiService {
     return item.url.match(idRegExp)[1];
   }
 
-  _transformPlanet(planet) {
+  _transformPlanet = planet => {
     const id = this._extractId(planet);
     return {
       id: id,
@@ -15,9 +15,9 @@ export default class SwapiService {
       diameter: planet.diameter,
       name: planet.name
     };
-  }
+  };
 
-  _transformStarship(starship) {
+  _transformStarship = starship => {
     return {
       id: this._extractId(starship),
       name: starship.name,
@@ -29,9 +29,9 @@ export default class SwapiService {
       passengers: starship.passengers,
       cargoCapacity: starship.cargoCapacity
     };
-  }
+  };
 
-  _transformPerson(person) {
+  _transformPerson = person => {
     return {
       id: this._extractId(person),
       name: person.name,
@@ -39,7 +39,7 @@ export default class SwapiService {
       birthYear: person.birthYear,
       eyeColor: person.eyeColor
     };
-  }
+  };
 
   async getRecource(url) {
     const res = await fetch(`${this._apiBase}${url}`);
