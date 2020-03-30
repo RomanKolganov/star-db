@@ -32,19 +32,13 @@ export default class App extends Component {
             <div className="mb-3">
               <ErrorButton />
             </div>
-              <PersonList>
-                  {({name}) => <span>{name}</span>}
-              </PersonList>
+              <PersonList/>
               <PersonDetails itemId={11} />
 
-              <StarshipList>
-                  {({name}) => <span>{name}</span>}
-              </StarshipList>
+              <StarshipList/>
               <StarshipDetails itemId={9}/>
 
-              <PlanetList>
-                  {({name}) => <span>{name}</span>}
-              </PlanetList>
+              <PlanetList/>
               <PlanetDetails itemId={2}/>
 
           </div>
