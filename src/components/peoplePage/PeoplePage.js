@@ -4,6 +4,7 @@ import PersonDetails from "../personDetails/PersonDetails";
 import ErrorIndicator from "../errorIndicator/ErrorIndicator";
 import SwapiService from "../../service/SwapiService";
 import Row from "../row/Row";
+import ErrorBoundary from "../errorBoundry/ErrorBoundary";
 
 export default class PeoplePage extends Component {
   constructor() {
@@ -39,17 +40,21 @@ export default class PeoplePage extends Component {
     const itemList = (
       <ItemList
         onItemSelected={this.onPersonSelected}
-        getData={this.swapiService.getAllPeople}
-        renderItem={({ name, gender, birthYear }) =>
-          `${name} (${gender}, ${birthYear})`
-        }
-      />
+        getData={this.swapiService.getAllPeople}>
+
+        {(i) =>
+          `${i.name} (${i.birthYear})`}
+      </ItemList>
     );
 
     const personDetails = (
-      <PersonDetails personId={this.state.selectedPerson} />
+        <ErrorBoundary>
+          <PersonDetails personId={this.state.selectedPerson} />
+        </ErrorBoundary>
     );
 
-    return <Row left={itemList} right={personDetails} />;
+    return (
+        <Row left={itemList} right={personDetails} />
+    )
   }
 }

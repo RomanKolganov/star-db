@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SwapiService from "../../service/SwapiService";
 
 import "./itemDetails.css";
+import ErrorButton from "../errorButton/ErrorButton";
 
 const Record = ({ item, field, label }) => {
   return (

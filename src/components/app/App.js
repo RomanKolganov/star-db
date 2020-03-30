@@ -5,8 +5,7 @@ import PeoplePage from "../peoplePage/PeoplePage";
 import "./app.css";
 import ErrorIndicator from "../errorIndicator/ErrorIndicator";
 import SwapiService from "../../service/SwapiService";
-import ItemList from "../itemList/ItemList";
-import PersonDetails from "../personDetails/PersonDetails";
+import ErrorButton from "../errorButton/ErrorButton";
 
 export default class App extends Component {
   constructor() {
@@ -30,6 +29,7 @@ export default class App extends Component {
       <div className="container-fluid">
         <Header />
         <RandomPlanet />
+        <ErrorButton />
         <PeoplePage />
         {
           // <div className="row mb2">
