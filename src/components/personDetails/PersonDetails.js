@@ -42,6 +42,10 @@ export default class PersonDetails extends Component {
   }
 
   render() {
+    if (!this.state.person) {
+      return <span>Select a person from a list</span>;
+    }
+
     const { loading, person } = this.state;
 
     const spinner = loading ? <Spinner /> : null;
@@ -57,7 +61,7 @@ export default class PersonDetails extends Component {
 }
 
 const PersonView = ({ person }) => {
-  const { id, name, gender, birthday, eyeColor } = person;
+  const { id, name, gender, birthYear, eyeColor } = person;
 
   return (
     <>
@@ -76,7 +80,7 @@ const PersonView = ({ person }) => {
           </li>
           <li className="list-group-item">
             <span className="term">Birth Year</span>
-            <span>{birthday}</span>
+            <span>{birthYear}</span>
           </li>
           <li className="list-group-item">
             <span className="term">Eye Color</span>
