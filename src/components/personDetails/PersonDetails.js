@@ -88,7 +88,9 @@ const PersonView = ({ person }) => {
             <span>{eyeColor}</span>
           </li>
         </ul>
-        <ErrorButton />
+        <div className="mt-3">
+          <ErrorButton />
+        </div>
       </div>
     </>
   );
