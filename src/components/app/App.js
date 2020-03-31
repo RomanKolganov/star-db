@@ -6,9 +6,10 @@ import ErrorIndicator from "../errorIndicator/ErrorIndicator";
 import ErrorButton from "../errorButton/ErrorButton";
 import ErrorBoundary from "../errorBoundry/ErrorBoundary";
 import {PersonList, StarshipList, PlanetList} from "../swComponents/ItemLists";
-import {PersonDetails, PlanetDetails, StarshipDetails} from "../swComponents/Details";
+
 import {SwapiServiceProvider} from "../../swapiServiceContext/SwapiServiceContext";
 import SwapiService from "../../service/SwapiService";
+import PersonDetails from "../swComponents/PersonDetails";
 
 export default class App extends Component {
   constructor() {
@@ -40,11 +41,11 @@ export default class App extends Component {
               <PersonList/>
               <PersonDetails itemId={11} />
 
-              <StarshipList/>
-              <StarshipDetails itemId={9}/>
+              {/*<StarshipList/>*/}
+              {/*<StarshipDetails itemId={9}/>*/}
 
-              <PlanetList/>
-              <PlanetDetails itemId={2}/>
+              {/*<PlanetList/>*/}
+              {/*<PlanetDetails itemId={2}/>*/}
             </div>
           </SwapiServiceProvider>
         </ErrorBoundary>
