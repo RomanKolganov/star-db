@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "./itemDetails.css";
+import ErrorButton from "../errorButton/ErrorButton";
 
 const Record = ({ item, field, label }) => {
   return (
@@ -65,6 +66,7 @@ export default class ItemDetails extends Component {
               return React.cloneElement(child, { item });
             })}
           </ul>
+          <ErrorButton />
         </div>
       </div>
     );

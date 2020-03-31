@@ -7,11 +7,10 @@ import ErrorButton from "../errorButton/ErrorButton";
 import ErrorBoundary from "../errorBoundry/ErrorBoundary";
 import {SwapiServiceProvider} from "../../swapiServiceContext/SwapiServiceContext";
 import SwapiService from "../../service/SwapiService";
-import PlanetDetails from "../swComponents/PlanetDetails";
-import {PersonList, PlanetList, StarshipList} from "../swComponents/ItemLists";
-import StarshipDetails from "../swComponents/StarshipDetails";
-import PersonDetails from "../swComponents/PersonDetails";
 import DummySwapiService from "../../service/DummySwapiService";
+import PeoplePage from "../pages/PeoplePage";
+import PlanetsPage from "../pages/PlanetsPage";
+import StarshipsPage from "../pages/StarshipsPage";
 
 export default class App extends Component {
   constructor() {
@@ -19,7 +18,7 @@ export default class App extends Component {
 
     this.state = {
       hasError: false,
-      swapiService: new DummySwapiService()
+      swapiService: new SwapiService()
     };
   }
 
@@ -49,14 +48,11 @@ export default class App extends Component {
               <div className="mb-3">
                 <ErrorButton />
               </div>
-              <PersonList/>
-              <PersonDetails itemId={11} />
 
-              <StarshipList/>
-              <StarshipDetails itemId={9}/>
+              <PeoplePage />
+              <PlanetsPage />
+              <StarshipsPage />
 
-              <PlanetList/>
-              <PlanetDetails itemId={2}/>
             </div>
           </SwapiServiceProvider>
         </ErrorBoundary>
