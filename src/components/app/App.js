@@ -5,11 +5,12 @@ import "./app.css";
 import ErrorIndicator from "../errorIndicator/ErrorIndicator";
 import ErrorButton from "../errorButton/ErrorButton";
 import ErrorBoundary from "../errorBoundry/ErrorBoundary";
-import {PersonList, StarshipList, PlanetList} from "../swComponents/ItemLists";
+// import {PersonList, StarshipList, PlanetList} from "../swComponents/ItemLists";
 
 import {SwapiServiceProvider} from "../../swapiServiceContext/SwapiServiceContext";
 import SwapiService from "../../service/SwapiService";
-import PersonDetails from "../swComponents/PersonDetails";
+// import PersonDetails from "../swComponents/PersonDetails";
+import PlanetDetails from "../swComponents/PlanetDetails";
 
 export default class App extends Component {
   constructor() {
@@ -38,14 +39,14 @@ export default class App extends Component {
               <div className="mb-3">
                 <ErrorButton />
               </div>
-              <PersonList/>
-              <PersonDetails itemId={11} />
+              {/*<PersonList/>*/}
+              {/*<PersonDetails itemId={11} />*/}
 
               {/*<StarshipList/>*/}
               {/*<StarshipDetails itemId={9}/>*/}
 
               {/*<PlanetList/>*/}
-              {/*<PlanetDetails itemId={2}/>*/}
+              <PlanetDetails itemId={2}/>
             </div>
           </SwapiServiceProvider>
         </ErrorBoundary>
