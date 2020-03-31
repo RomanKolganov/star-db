@@ -7,6 +7,8 @@ import ErrorButton from "../errorButton/ErrorButton";
 import ErrorBoundary from "../errorBoundry/ErrorBoundary";
 import {PersonList, StarshipList, PlanetList} from "../swComponents/ItemLists";
 import {PersonDetails, PlanetDetails, StarshipDetails} from "../swComponents/Details";
+import {SwapiServiceProvider} from "../../swapiServiceContext/SwapiServiceContext";
+import SwapiService from "../../service/SwapiService";
 
 export default class App extends Component {
   constructor() {
@@ -17,6 +19,8 @@ export default class App extends Component {
     };
   }
 
+  swapiService = new SwapiService();
+
   componentDidCatch() {
     if (this.state.hasError) {
       return <ErrorIndicator />;
@@ -26,12 +30,13 @@ export default class App extends Component {
   render() {
     return (
         <ErrorBoundary>
-          <div className="container-fluid">
-            <Header />
-            <RandomPlanet />
-            <div className="mb-3">
-              <ErrorButton />
-            </div>
+          <SwapiServiceProvider value={this.swapiService}>
+            <div className="container-fluid">
+              <Header />
+              <RandomPlanet />
+              <div className="mb-3">
+                <ErrorButton />
+              </div>
               <PersonList/>
               <PersonDetails itemId={11} />
 
@@ -40,8 +45,8 @@ export default class App extends Component {
 
               <PlanetList/>
               <PlanetDetails itemId={2}/>
-
-          </div>
+            </div>
+          </SwapiServiceProvider>
         </ErrorBoundary>
     );
   }
