@@ -10,11 +10,19 @@ const withData = (View) => {
         };
 
         componentDidMount() {
+            this.update()
+        }
+
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            if (this.props.getData !== prevProps.getData) {
+                this.update();
+            }
+        }
+
+        update() {
             this.props.getData()
                 .then((data) => {
-                    this.setState({
-                        data
-                    });
+                    this.setState({data});
                 });
         }
 

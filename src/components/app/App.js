@@ -11,17 +11,17 @@ import PlanetDetails from "../swComponents/PlanetDetails";
 import {PersonList, PlanetList, StarshipList} from "../swComponents/ItemLists";
 import StarshipDetails from "../swComponents/StarshipDetails";
 import PersonDetails from "../swComponents/PersonDetails";
+import DummySwapiService from "../../service/DummySwapiService";
 
 export default class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      hasError: false
+      hasError: false,
+      swapiService: new DummySwapiService()
     };
   }
-
-  swapiService = new SwapiService();
 
   componentDidCatch() {
     if (this.state.hasError) {
@@ -29,12 +29,22 @@ export default class App extends Component {
     }
   }
 
+  onServiceChange = () => {
+    this.setState(({swapiService}) => {
+      const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService
+
+      return {
+        swapiService: new Service()
+      }
+    })
+  };
+
   render() {
     return (
         <ErrorBoundary>
-          <SwapiServiceProvider value={this.swapiService}>
+          <SwapiServiceProvider value={this.state.swapiService}>
             <div className="container-fluid">
-              <Header />
+              <Header onServiceChange={this.onServiceChange} />
               <RandomPlanet />
               <div className="mb-3">
                 <ErrorButton />
