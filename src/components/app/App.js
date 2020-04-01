@@ -11,7 +11,7 @@ import DummySwapiService from "../../service/DummySwapiService";
 import PeoplePage from "../pages/PeoplePage";
 import PlanetsPage from "../pages/PlanetsPage";
 import StarshipsPage from "../pages/StarshipsPage";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
 import StarshipDetails from "../swComponents/StarshipDetails";
 
 export default class App extends Component {
@@ -51,17 +51,20 @@ export default class App extends Component {
                 <div className="mb-3">
                   <ErrorButton />
                 </div>
+                <Switch>
+                  <Route path="/" render={() => <h2>Welcome to Star DB</h2>} exact={true}/>
+                  <Route path="/people/:id?" component={PeoplePage}/>
+                  <Route path="/planets" component={PlanetsPage}/>
+                  <Route path="/starships" component={StarshipsPage} exact/>
+                  <Route path="/starships/:id"
+                         render={({match, location, history}) => {
+                           const {id} = match.params;
+                           return <StarshipDetails itemId={id}/>
+                         }}/>
 
-                <Route path="/" render={() => <h2>Welcome to Star DB</h2>} exact={true}/>
-                <Route path="/people/:id?" component={PeoplePage}/>
-                <Route path="/planets" component={PlanetsPage}/>
-                <Route path="/starships" component={StarshipsPage} exact/>
-                <Route path="/starships/:id"
-                       render={({match, location, history}) => {
-                         const {id} = match.params;
-                         return <StarshipDetails itemId={id}/>
-                       }}/>
-
+                  {/*<Redirect to="/" />*/}
+                  <Route render={() => <h2>Page not found</h2>} />
+                </Switch>
               </div>
             </Router>
           </SwapiServiceProvider>
